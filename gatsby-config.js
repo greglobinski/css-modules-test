@@ -5,7 +5,16 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
+      options: {
+        analyzerMode: "static",
+        reportFilename: "_bundle.html",
+        openAnalyzer: false,
+      },
+    },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-perf-budgets`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -26,6 +35,15 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-plugin-purgecss",
+      options: {
+        printRejected: true,
+        purgeCSSOptions: {
+          safelist: [],
+        },
       },
     },
     `gatsby-plugin-gatsby-cloud`,
